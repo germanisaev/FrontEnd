@@ -1,0 +1,27 @@
+<table class="table table-hover">
+  <tr *ngFor="let pd of service.list">
+    <td (click)="populateForm(pd)">{{pd.CardOwnerName}}</td>
+    <td (click)="populateForm(pd)">{{filterCreditCard(pd.CardNumber)}}</td>
+    <td (click)="populateForm(pd)">{{pd.ExpirationDate}}</td>
+    <td>
+      <i class="far fa-trash-alt fa-lg text-danger" data-toggle="modal" data-target="#confirm-delete"></i>
+      <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              Delete User
+            </div>
+            <div class="modal-body">
+              Are you sure to delete this record ?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default bg-secondary text-white" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-danger btn-ok text-white" data-dismiss="modal" (click)="onDelete(pd.PMId)">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>

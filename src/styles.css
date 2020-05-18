@@ -1,0 +1,120 @@
+/* You can add global styles to this file, and also import other style files */
+/* regular style toast */ 
+/*@import "../node_modules/ngx-toastr/toastr.css";*/
+
+body {
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+}
+
+.jumbotron {
+    background: radial-gradient(closest-corner, rgba(45, 116, 170, 0) 60%, rgba(25, 72, 107, 0.26)), linear-gradient(108deg, #66f5f2, #3d54d6 90%);
+}
+
+.table {
+    color: #eee;
+}
+
+input.ng-touched.ng-invalid {
+    border-color: #cd3545;
+}
+input.ng-valid {
+    border-color: #28a745;
+}
+.green-icon {
+    color: #28a745;
+}
+.red-icon {
+    color: #cd3545
+}
+.gray-icon {
+    color: #cccccc;
+}
+
+#toast-container > div {
+    opacity: 1;
+}
+
+table tr:hover {
+    cursor: pointer;
+}
+
+
+/* Date Field */
+.month select,
+.year select {
+    width: 145px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border: 2px solid #e1e8ee;
+    border-radius: 6px;
+    /*background: url('caret.png') no-repeat;*/
+    background-position: 85% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+ 
+.month select {
+    float: left;
+}
+ 
+.year select {
+    float: right;
+}
+
+/*********************************************/
+select {
+    /* reset */
+
+  margin: 0;      
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /*
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+  */
+}
+select.minimal {
+    background-image:
+      linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, #ccc, #ccc);
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+  }
+  
+  select.minimal:focus {
+    background-image:
+      linear-gradient(45deg, #ced4da 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, #ced4da 50%),
+      linear-gradient(to right, #ccc, #ccc);
+    background-position:
+      calc(100% - 15px) 1em,
+      calc(100% - 20px) 1em,
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+    border-color: #ced4da;
+    outline: 0;
+  }
+
+  select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }

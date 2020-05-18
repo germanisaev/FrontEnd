@@ -1,0 +1,111 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <input type="hidden" name="PMId" [value]="service.formData.PMId">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <i class="fab fa-cc-visa fa-2x gray-icon"
+        [ngClass]="{'green-icon':cType=='Visa', 'gray-icon':cType=='Invalid' || cType==''}"></i>
+    </div>
+    <div class="form-group col-md-2">
+      <i class="fab fa-cc-mastercard fa-2x gray-icon"
+        [ngClass]="{'green-icon':cType=='Master Card', 'gray-icon':cType=='Invalid' || cType==''}"></i>
+    </div>
+    <div class="form-group col-md-2">
+      <i class="fab fa-cc-amex fa-2x gray-icon"
+        [ngClass]="{'green-icon':cType=='American Express', 'gray-icon':cType=='Invalid' || cType==''}"></i>
+    </div>
+    <div class="form-group col-md-2">
+      <i class="fab fa-cc-diners-club fa-2x gray-icon"
+        [ngClass]="{'green-icon':cType=='Diners Club', 'gray-icon':cType=='Invalid' || cType==''}"></i>
+    </div>
+    <div class="form-group col-md-2">
+      <i class="fab fa-cc-discover fa-2x gray-icon"
+        [ngClass]="{'green-icon':cType=='Discover', 'gray-icon':cType=='Invalid' || cType==''}"></i>
+    </div>
+    <div class="form-group col-md-2">
+      <i class="fab fa-cc-jcb fa-2x gray-icon"
+        [ngClass]="{'green-icon':cType=='JCB', 'gray-icon':cType=='Invalid' || cType==''}"></i>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text bg-white">
+          <i class="fas fa-user-circle" [class.green-icon]="CardOwnerName.valid"
+            [class.red-icon]="CardOwnerName.invalid && CardOwnerName.touched"></i>
+        </div>
+      </div>
+      <input name="CardOwnerName" #CardOwnerName="ngModel" [(ngModel)]="service.formData.CardOwnerName"
+        class="form-control" placeholder="Card Owner Name" required maxlength="100" minlength="5" pattern="[a-zA-Z ]*"
+        oninput="this.value = this.value.toUpperCase()">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text bg-white">
+          <i class="fas fa-credit-card" [class.green-icon]="CardNumber.valid"
+            [class.red-icon]="CardNumber.invalid && CardNumber.touched"></i>
+        </div>
+      </div>
+      <input name="CardNumber" id="CardNumber" #CardNumber="ngModel" [(ngModel)]="service.formData.CardNumber"
+        class="form-control" placeholder="Digit Card Number" required [minlength]="minLength" [maxlength]="maxLength"
+        (keyup)="ccFormat($event.target.value)">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <!--
+    <div class="form-group col-md-7">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-calendar-alt" [class.green-icon]="ExpirationDate.valid"
+              [class.red-icon]="ExpirationDate.invalid && ExpirationDate.touched"></i>
+          </div>
+        </div>
+        <input name="ExpirationDate" id="ExpirationDate" #ExpirationDate="ngModel" [(ngModel)]="service.formData.ExpirationDate"
+          class="form-control" placeholder="MM/YY" required maxlength="5" minlength="5" pattern="([0-9]{2}[/]?){2}"
+          onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')">
+      </div>
+    </div>
+    -->
+    <input type="hidden" class="form-control" name="ExpirationDate" id="ExpirationDate" #ExpirationDate="ngModel"
+      [(ngModel)]="service.formData.ExpirationDate" required maxlength="5" minlength="5" pattern="([0-9]{2}[/]?){2}">
+
+    <div class="form-group col-md-4">
+      <select id="ddlByMonth" class="form-control minimal" (change)="onChange($event)" name="ddlByMonth">
+        <option value="0" selected="selected">Month</option>
+        <option *ngFor="let item of dataMonth" [ngValue]="item" [selected]="item.name==selectedMonth">{{item.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <select id="ddlByYear" class="form-control minimal" (change)="onChange($event)" name="ddlByYear">
+        <option value="0" selected="selected">Year</option>
+        <option *ngFor="let item of dataYear" [ngValue]="item" [selected]="item.name==selectedYear">{{item.name}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-white">
+            <i class="fas fa-key" [class.green-icon]="CVV.valid" [class.red-icon]="CVV.invalid && CVV.touched"></i>
+          </div>
+        </div>
+        <input type="password" name="CVV" #CVV="ngModel" [(ngModel)]="service.formData.CVV" class="form-control"
+          placeholder="CVV" required maxlength="3" minlength="3">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success btn-lg btn-block" type="submit" [disabled]="form.invalid"><i
+        class="fas fa-database"></i> Proceed</button>
+    <button class="btn btn-secondary btn-lg btn-block" (click)="onClear()"><i class="fas fa-redo"></i> Clear</button>
+  </div>
+</form>
+<!--
+<pre>{{selectedMonth|json}}</pre>
+<pre>{{selectedYear|json}}</pre>
+-->
